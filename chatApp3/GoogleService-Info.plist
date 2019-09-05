@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>439432929376-4h3n3kk8g7dpan2bld9a0248q5rse9s9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.439432929376-4h3n3kk8g7dpan2bld9a0248q5rse9s9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDFeAmT41EcnHrXP9XfrwQZdO1gyuIT7NA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>439432929376</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.johntylerguess.chatApp3</string>
+	<key>PROJECT_ID</key>
+	<string>chat-da625</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chat-da625.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:439432929376:ios:8efe77943f58bb25962305</string>
+	<key>DATABASE_URL</key>
+	<string>https://chat-da625.firebaseio.com</string>
+</dict>
+</plist>
