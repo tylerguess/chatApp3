@@ -11,9 +11,13 @@ import SnapKit
 
 class AuthController: UIViewController {
     
+    // This is the view controller's view
+    var signUpView = SignUpView()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.view = SignUpView()
+        self.view = signUpView
+        signUpView.submitButton.addTarget(self, action: #selector(authenticate), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -22,15 +26,11 @@ class AuthController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    @objc func authenticate() {
+        print("Authenticated")
     }
     
 }
 
-extension AuthController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}

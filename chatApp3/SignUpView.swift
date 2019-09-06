@@ -64,6 +64,7 @@ class SignUpView: UIView {
         self.backgroundColor = UIColor(hex: 0x3d3d3d, alpha: 1.0)
         emailField.delegate = self
         passwordField.delegate = self
+        usernameField.delegate = self
         formatEmailField()
         formatPasswordField()
         formatLoginSelector()
