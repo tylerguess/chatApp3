@@ -10,20 +10,42 @@ import UIKit
 
 class SignUpView: UIView {
     
-    let emailField: UITextField
-    let passwordField: UITextField
+    let emailField: UITextField = {
+        $0.font = UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04)
+        $0.textColor = UIColor.white
+        $0.attributedPlaceholder = NSAttributedString(string:"email", attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: 0xFFFFFF, alpha: 0.5),
+            NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04) as Any])
+        return $0
+    }(UITextField())
+    let passwordField: UITextField = {
+        $0.font = UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04)
+        $0.textColor = UIColor.white
+        $0.attributedPlaceholder = NSAttributedString(string:"password", attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: 0xFFFFFF, alpha: 0.5),
+            NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04) as Any])
+        return $0
+    }(UITextField())
+    let usernameField: UITextField = {
+        $0.font = UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04)
+        $0.textColor = UIColor.white
+        $0.attributedPlaceholder = NSAttributedString(string:"username", attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: 0xFFFFFF, alpha: 0.5),
+            NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04) as Any])
+        return $0
+    }(UITextField())
+    let loginSelector = UISegmentedControl(items: ["Login", "Sign Up"])
 
     init() {
-        emailField = UITextField()
-        passwordField = UITextField()
         super.init(frame: .zero)
         self.addSubview(emailField)
         self.addSubview(passwordField)
-        self.backgroundColor = UIColor(hex: 0x3d3d3d)
+        self.addSubview(loginSelector)
+        self.addSubview(usernameField)
+        self.backgroundColor = UIColor(hex: 0x3d3d3d, alpha: 1.0)
         emailField.delegate = self
         passwordField.delegate = self
         formatEmailField()
         formatPasswordField()
+        formatLoginSelector()
+        formatUsernameField()
         setupConstraints()
     }
     
@@ -45,38 +67,98 @@ class SignUpView: UIView {
         passwordField.setLeftPaddingPoints(15)
     }
     
+    private func formatUsernameField() {
+        usernameField.layer.cornerRadius = 25
+        usernameField.layer.borderWidth = 1
+        usernameField.layer.borderColor = UIColor.white.cgColor
+        usernameField.setLeftPaddingPoints(15)
+    }
+    
+    private func formatLoginSelector() {
+        loginSelector.selectedSegmentIndex = 0
+        loginSelector.layer.borderColor = UIColor.white.cgColor
+        loginSelector.layer.cornerRadius = 25
+        loginSelector.setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: UIColor.white,
+                NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04)!
+            ], for: .normal)
+        loginSelector.setTitleTextAttributes(
+            [
+                NSAttributedString.Key.foregroundColor: UIColor.orange,
+                NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04)!
+            ], for: .selected)
+        loginSelector.tintColor = .clear
+        loginSelector.layer.borderColor = UIColor.white.cgColor
+        loginSelector.addTarget(self, action: #selector(toggleUsernameField), for: .valueChanged)
+    }
+    
+    @objc private func toggleUsernameField() {
+            if self.loginSelector.selectedSegmentIndex == 1 {
+                usernameField.snp.remakeConstraints { (make) in
+                    make.centerY.equalToSuperview().offset(-100)
+                    make.left.equalToSuperview().offset(40)
+                    make.right.equalToSuperview().offset(-40)
+                    make.height.equalTo(UIScreen.main.bounds.height * 0.08)
+                }
+            } else {
+                usernameField.snp.remakeConstraints { (make) in
+                    make.centerY.equalToSuperview().offset(-100)
+                    make.left.equalToSuperview().offset(40)
+                    make.right.equalToSuperview().offset(-40)
+                    make.height.equalTo(0)
+                }
+            }
+        UIView.animate(withDuration: 0.4) {
+            self.layoutIfNeeded()
+        }
+    }
+    
     private func setupConstraints() {
-        emailField.snp.remakeConstraints { (make) in
-            make.centerY.equalToSuperview().offset(-30)
+        usernameField.snp.remakeConstraints { (make) in
+            make.centerY.equalToSuperview().offset(-100)
             make.left.equalToSuperview().offset(40)
             make.right.equalToSuperview().offset(-40)
-            make.height.equalTo(50)
+            make.height.equalTo(0)
+        }
+        emailField.snp.remakeConstraints { (make) in
+            make.top.equalTo(usernameField.snp_bottomMargin).offset(40)
+            make.left.equalToSuperview().offset(40)
+            make.right.equalToSuperview().offset(-40)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.08)
         }
         
         passwordField.snp.remakeConstraints { (make) in
             make.top.equalTo(emailField.snp_bottomMargin).offset(40)
             make.left.equalToSuperview().offset(40)
             make.right.equalToSuperview().offset(-40)
-            make.height.equalTo(50)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.08)
+        }
+        loginSelector.snp.remakeConstraints{ (make) in
+            make.top.equalTo(passwordField.snp_bottomMargin).offset(40)
+            make.left.equalToSuperview().offset(40)
+            make.right.equalToSuperview().offset(-40)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.08)
         }
     }
     
 }
 
 extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
+    convenience init(red: Int, green: Int, blue: Int, alpha: CGFloat) {
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")
         assert(blue >= 0 && blue <= 255, "Invalid blue component")
         
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: alpha)
     }
     
-    convenience init(hex: Int) {
+    convenience init(hex: Int, alpha: CGFloat) {
         self.init(
             red: (hex >> 16) & 0xFF,
             green: (hex >> 8) & 0xFF,
-            blue: hex & 0xFF
+            blue: hex & 0xFF,
+            alpha: alpha
         )
     }
 }
