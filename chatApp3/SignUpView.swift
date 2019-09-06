@@ -17,6 +17,7 @@ class SignUpView: UIView {
             NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04) as Any])
         return $0
     }(UITextField())
+    
     let passwordField: UITextField = {
         $0.font = UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04)
         $0.textColor = UIColor.white
@@ -24,6 +25,7 @@ class SignUpView: UIView {
             NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04) as Any])
         return $0
     }(UITextField())
+    
     let usernameField: UITextField = {
         $0.font = UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04)
         $0.textColor = UIColor.white
@@ -31,7 +33,26 @@ class SignUpView: UIView {
             NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04) as Any])
         return $0
     }(UITextField())
+    
     let loginSelector = UISegmentedControl(items: ["Login", "Sign Up"])
+    
+    let submitButton: UIButton = {
+        let attrStringNormal = NSAttributedString(string: "Submit", attributes:
+        [
+            NSAttributedString.Key.foregroundColor: UIColor(hex: 0xFFFFFF, alpha: 1.0),
+            NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04)!
+            ]
+        )
+        let attrStringPressed = NSAttributedString(string: "Submit", attributes:
+            [
+                NSAttributedString.Key.foregroundColor: UIColor(hex: 0xFFFFFF, alpha: 0.5),
+                NSAttributedString.Key.font: UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.04)!
+            ]
+        )
+        $0.setAttributedTitle(attrStringNormal, for: .normal)
+        $0.setAttributedTitle(attrStringPressed, for: .highlighted)
+        return $0
+    }(UIButton())
 
     init() {
         super.init(frame: .zero)
@@ -39,6 +60,7 @@ class SignUpView: UIView {
         self.addSubview(passwordField)
         self.addSubview(loginSelector)
         self.addSubview(usernameField)
+        self.addSubview(submitButton)
         self.backgroundColor = UIColor(hex: 0x3d3d3d, alpha: 1.0)
         emailField.delegate = self
         passwordField.delegate = self
@@ -93,6 +115,10 @@ class SignUpView: UIView {
         loginSelector.addTarget(self, action: #selector(toggleUsernameField), for: .valueChanged)
     }
     
+    private func formatSubmitButton() {
+        submitButton.showsTouchWhenHighlighted = true
+    }
+    
     @objc private func toggleUsernameField() {
             if self.loginSelector.selectedSegmentIndex == 1 {
                 usernameField.snp.remakeConstraints { (make) in
@@ -109,7 +135,7 @@ class SignUpView: UIView {
                     make.height.equalTo(0)
                 }
             }
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.2) {
             self.layoutIfNeeded()
         }
     }
@@ -139,6 +165,12 @@ class SignUpView: UIView {
             make.left.equalToSuperview().offset(40)
             make.right.equalToSuperview().offset(-40)
             make.height.equalTo(UIScreen.main.bounds.height * 0.08)
+        }
+        submitButton.snp.remakeConstraints { (make) in
+            make.top.equalTo(loginSelector.snp.bottomMargin).offset(40)
+            make.width.equalTo(UIScreen.main.bounds.width * 0.25)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.08)
+            make.centerX.equalToSuperview()
         }
     }
     
