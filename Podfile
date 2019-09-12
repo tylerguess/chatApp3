@@ -7,7 +7,7 @@ target 'chatApp3' do
 
   # Pods for chatApp3
 	pod 'Firebase/Auth'
-	pod 'Firebase/Database'
+	pod 'Firebase/Firestore'
 	pod 'SnapKit'
 
 end
