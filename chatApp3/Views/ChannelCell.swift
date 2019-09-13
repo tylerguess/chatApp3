@@ -13,7 +13,7 @@ class ChannelCell: UITableViewCell {
     let randomColors: [UIColor] = [.red, .blue, .yellow, .orange, .green, .purple, .cyan, .magenta]
     
     let cardView: UIView = {
-        $0.backgroundColor = UIColor.lightGray
+        $0.backgroundColor = UIColor(hex: 0x323232, alpha: 1.0)
         $0.layer.cornerRadius = 20
         $0.layer.masksToBounds = true
         return $0
@@ -23,8 +23,9 @@ class ChannelCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.addSubview(cardView)
         self.backgroundColor = .clear
-        self.textLabel?.font = UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.10)
+        self.textLabel?.font = UIFont(name: "Avenir", size: UIScreen.main.bounds.height * 0.07)
         self.textLabel?.textColor = UIColor.white
+        self.accessoryType = .disclosureIndicator
         setupConstraints()
     }
     

@@ -37,6 +37,12 @@ class AppCoordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
+    func goToChat() {
+        let vc = ChatController()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
     func setUserData(uid: String) {
         let userDocRef = db.collection("users").document(uid)
         

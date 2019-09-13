@@ -11,8 +11,11 @@ import UIKit
 class ChannelsView: UIView {
     
     let channelList: UITableView = {
-        $0.backgroundColor = UIColor(hex: 0xEEEEEE, alpha: 1.0)
+        $0.backgroundColor = UIColor(hex: 0x323232, alpha: 1.0)
         $0.separatorStyle = .none
+        $0.separatorColor = UIColor.white
+        $0.separatorEffect = UIBlurEffect(style: .regular)
+        $0.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         return $0
     }(UITableView())
 
