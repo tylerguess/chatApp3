@@ -12,6 +12,9 @@ class ChatBottomBar: UIView {
     
     let messageTextView: UITextView = {
         $0.layer.cornerRadius = 10
+        $0.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.height * 0.025)
+        $0.keyboardDismissMode = .interactive
+        $0.sizeToFit()
         return $0
     }(UITextView())
     
@@ -41,10 +44,11 @@ class ChatBottomBar: UIView {
         }
         messageTextView.snp.remakeConstraints { (make) in
             make.centerY.equalToSuperview().offset(4)
-            make.height.equalToSuperview().multipliedBy(0.5)
+            make.height.equalToSuperview().multipliedBy(0.45)
             make.right.equalTo(sendButton.snp_leftMargin).offset(-10)
             make.width.equalTo(UIScreen.main.bounds.width * 0.75)
         }
+        
         
     }
     

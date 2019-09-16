@@ -12,16 +12,42 @@ class ChatController: UIViewController {
     
     let chatView = ChatView()
     var coordinator: AppCoordinator?
+    var messages: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = chatView
         chatView.messagesTableView.delegate = self
         chatView.messagesTableView.dataSource = self
-        
         chatView.messagesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        chatView.bottomBar.sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func sendMessage() {
+        messages.append(chatView.bottomBar.messageTextView.text)
+        chatView.bottomBar.messageTextView.text = ""
+        chatView.messagesTableView.reloadData()
+        chatView.bottomBar.messageTextView.resignFirstResponder()
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
 
@@ -32,16 +58,17 @@ class ChatController: UIViewController {
 extension ChatController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.height * 0.10
+        return UIScreen.main.bounds.height * 0.05
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = messages[indexPath.item]
         return cell
     }
 }

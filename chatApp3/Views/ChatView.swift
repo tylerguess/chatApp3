@@ -34,7 +34,7 @@ class ChatView: UIView {
             make.bottom.equalToSuperview()
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.height.equalTo(UIScreen.main.bounds.height * 0.12)
+            make.height.greaterThanOrEqualTo(UIScreen.main.bounds.height * 0.12)
         }
         messagesTableView.snp.remakeConstraints { (make) in
             make.top.equalToSuperview()
