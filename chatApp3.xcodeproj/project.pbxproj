@@ -19,6 +19,7 @@
 		84357094232C426400EB8414 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84357093232C426400EB8414 /* ChatController.swift */; };
 		84357096232C433100EB8414 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84357095232C433100EB8414 /* ChatView.swift */; };
 		84357098232C440D00EB8414 /* ChatBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84357097232C440D00EB8414 /* ChatBottomBar.swift */; };
+		84383AF6233040F000D3A24C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84383AF5233040F000D3A24C /* MessageTableViewCell.swift */; };
 		84B68A5E2329AF00004B8055 /* ChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B68A5D2329AF00004B8055 /* ChannelController.swift */; };
 		84B68A602329AF7A004B8055 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B68A5F2329AF7A004B8055 /* UserModel.swift */; };
 		8A55752FBCA41ACE65C9471E /* Pods_chatApp3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF09EBEB4D58BCA50DEB671 /* Pods_chatApp3.framework */; };
@@ -41,6 +42,7 @@
 		84357093232C426400EB8414 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		84357095232C433100EB8414 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		84357097232C440D00EB8414 /* ChatBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBottomBar.swift; sourceTree = "<group>"; };
+		84383AF5233040F000D3A24C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		84B68A5D2329AF00004B8055 /* ChannelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelController.swift; sourceTree = "<group>"; };
 		84B68A5F2329AF7A004B8055 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C5E69B5BE1648C6B61E236A2 /* Pods-chatApp3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatApp3.release.xcconfig"; path = "Target Support Files/Pods-chatApp3/Pods-chatApp3.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				842B6DB6232B075E006C5FEB /* ChannelCell.swift */,
 				84357095232C433100EB8414 /* ChatView.swift */,
 				84357097232C440D00EB8414 /* ChatBottomBar.swift */,
+				84383AF5233040F000D3A24C /* MessageTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				842B6DB7232B075E006C5FEB /* ChannelCell.swift in Sources */,
 				84357096232C433100EB8414 /* ChatView.swift in Sources */,
 				842B6DB5232B0274006C5FEB /* ChannelsView.swift in Sources */,
+				84383AF6233040F000D3A24C /* MessageTableViewCell.swift in Sources */,
 				84B68A602329AF7A004B8055 /* UserModel.swift in Sources */,
 				84B68A5E2329AF00004B8055 /* ChannelController.swift in Sources */,
 				841F21512321CC8F00D9AD05 /* SignUpView.swift in Sources */,

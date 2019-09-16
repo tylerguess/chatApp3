@@ -19,7 +19,9 @@ class ChatController: UIViewController {
         self.view = chatView
         chatView.messagesTableView.delegate = self
         chatView.messagesTableView.dataSource = self
-        chatView.messagesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        chatView.messagesTableView.register(MessageTableViewCell.self, forCellReuseIdentifier: "messageCell")
+        chatView.messagesTableView.estimatedRowHeight = 50
+        chatView.messagesTableView.rowHeight = UITableView.automaticDimension
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -61,14 +63,10 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
         return messages.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.height * 0.05
-    }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = messages[indexPath.item]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
+        cell.messageLabel.text = messages[indexPath.item]
         return cell
     }
 }
